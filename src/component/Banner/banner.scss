@@ -1,0 +1,98 @@
+$purple-glow: #6366f1;
+$purple-pink: #7d0f7f;
+$purple-darkness: #331361;
+$text-white: #f3f4f6;
+$glass-bg: rgba(255, 255, 255, 0.02);
+$glass-border: rgba(255, 255, 255, 0.04);
+
+.marquee-container-fluid {
+  width: 100%;
+  height: 60px;
+  background: $glass-bg;
+  border-top: 1px solid $glass-border;
+  border-bottom: 1px solid $glass-border;
+  backdrop-filter: blur(8px);
+  overflow: hidden; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 100px 0 80px 0 !important;
+  box-shadow: 0 0 15px rgba($purple-darkness, 0.3);
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+  &::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+  &::after { right: 0; background: linear-gradient(to left, #000, transparent); }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: infiniteScroll 20s linear infinite; 
+    will-change: transform;
+  }
+
+  .marquee-group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 3rem;
+    min-width: 100%;
+    padding-right: 3rem;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.4); 
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    transition: all 0.3s ease;
+
+    .marquee-icon {
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .marquee-divider {
+      color: $purple-darkness;
+      margin-left: 1.5rem;
+      font-size: 1.2rem;
+      text-shadow: 0 0 8px $purple-pink;
+    }
+
+    &:hover {
+      color: $text-white;
+      text-shadow: 0 0 10px $purple-glow;
+      
+      .marquee-icon {
+        color: $purple-pink;
+      }
+    }
+  }
+
+  &:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); 
+  }
+}

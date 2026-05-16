@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow-x: hidden;
+}
+
+:root {
+    --bg-color: #000000;
+    --card: #0d0d0d;
+    --primary: #280642;
+    --glow: #916dfe;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --radius: 10px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    height: auto;
+    font-weight: 100;
+    background: radial-gradient(var(--primary), var(--bg-color));
+    animation: fadeIn 1s ease-out;
+    overflow-x: hidden;
+}
+
+.background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1; 
+}
+
+.light {
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(to top, transparent, var(--glow) 20%, var(--primary) 60%, transparent);
+    opacity: 0.6;
+    bottom: -100vh;
+    animation: floatUp linear infinite;
+    will-change: transform;
+
+    @media screen and (max-width: 992px) {
+        width: 1px; 
+        animation: floatUpMobile linear infinite; 
+    }
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--glow);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particle-float linear infinite;
+    box-shadow: 0 0 6px var(--glow);
+}
+
+.traveling-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--glow);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--glow), 0 0 30px var(--primary);
+    animation: travel-up 6s ease-in-out infinite;
+}
+
+.mouse-glow {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(145, 109, 254, 0.15), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    transition: all 0.1s ease-out;
+    filter: blur(10px);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-200vh);
+        opacity: 0;
+    }
+}
+
+@keyframes floatUpMobile {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.25; 
+    }
+
+    50% {
+        opacity: 0.15;
+    }
+
+    75% {
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: translateY(-200vh);
+        opacity: 0;
+    }
+}
+
+@keyframes particle-float {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(-50px) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes travel-up {
+    0% {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.x1 { animation-duration: 4s; left: 10%; }
+.x2 { animation-duration: 7s; left: 20%; transform: scaleY(1.6); }
+.x3 { animation-duration: 2.5s; left: 30%; transform: scaleY(0.5); }
+.x4 { animation-duration: 4.5s; left: 40%; transform: scaleY(1.2); }
+.x5 { animation-duration: 8s; left: 50%; transform: scaleY(2.2); }
+.x6 { animation-duration: 3s; left: 60%; transform: scaleY(0.8); }
+.x7 { animation-duration: 5.3s; left: 70%; transform: scaleY(3.2); }
+.x8 { animation-duration: 4.7s; left: 80%; transform: scaleY(1.7); }
+.x9 { animation-duration: 4.1s; left: 90%; transform: scaleY(0.9); }
+
+@media (max-width:1024px) {
+    .mouse-glow {
+        display: none;
+    }
+}

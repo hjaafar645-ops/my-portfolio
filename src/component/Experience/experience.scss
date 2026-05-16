@@ -1,0 +1,176 @@
+$purple-glow: #6366f1;
+$purple-pink: #7d0f7f;
+$purple-darkness: #331361;
+$text-white: #f3f4f6;
+$text-gray: #9ca3af;
+$glass-bg: rgba(255, 255, 255, 0.02);
+$glass-border: rgba(255, 255, 255, 0.06);
+
+.experience-section {
+  width: 100%;
+  min-height: auto !important;
+  height: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0 !important;
+  position: relative;
+  overflow: visible;
+
+  .experience-container {
+    width: 80%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+
+    @media screen and (max-width: 992px) {
+        width: 90%;
+        gap: 2.5rem;
+    }
+  }
+
+  .exp-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .exp-title-icon {
+      color: $purple-glow;
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 8px $purple-glow);
+    }
+
+    .exp-main-title {
+      color: $text-white;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      position: relative;
+
+      @media screen and (max-width: 576px) {
+        font-size: 1.8rem;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, $purple-pink, $purple-glow);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .timeline-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+    padding-left: 35px;
+
+    .timeline-axis-line {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      width: 2px;
+      height: calc(100% - 20px);
+      background: linear-gradient(to bottom, $purple-pink, $purple-darkness, transparent);
+      box-shadow: 0 0 8px rgba($purple-pink, 0.4);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+
+      .timeline-dot-icon {
+        position: absolute;
+        left: -35px;
+        width: 34px;
+        height: 34px;
+        background: #0d0d0d;
+        border: 2px solid $purple-darkness;
+        color: $text-gray;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+        z-index: 5;
+        transition: all 0.4s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      }
+
+      .timeline-glass-card {
+        background: $glass-bg;
+        border: 1px solid $glass-border;
+        border-radius: 18px;
+        padding: 25px;
+        width: 100%;
+        max-width: 850px; 
+        backdrop-filter: blur(12px);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        .card-date {
+          color: $purple-glow;
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          display: block;
+          margin-bottom: 0.5rem;
+          text-shadow: 0 0 10px rgba($purple-glow, 0.3);
+        }
+
+        .card-job-title {
+          color: $text-white;
+          font-size: 1.25rem;
+          font-weight: 700;
+          margin-bottom: 0.3rem;
+          transition: color 0.3s ease;
+        }
+
+        .card-company-sub {
+          color: $purple-pink;
+          font-size: 0.9rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+
+        .card-job-desc {
+          color: $text-gray;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          text-align: justify;
+        }
+      }
+
+      &:hover {
+        .timeline-dot-icon {
+          border-color: $purple-glow;
+          color: $text-white;
+          background: $purple-darkness;
+          box-shadow: 0 0 15px $purple-glow;
+          transform: scale(1.1);
+        }
+
+        .timeline-glass-card {
+          transform: translateX(8px);
+          border-color: rgba($purple-glow, 0.3);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4),
+                      0 0 20px rgba($purple-darkness, 0.3);
+
+          .card-job-title {
+            color: $purple-glow;
+          }
+        }
+      }
+    }
+  }
+}
